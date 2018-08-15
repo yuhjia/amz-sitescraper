@@ -1,0 +1,9 @@
+# https://github.com/EugenMayer/docker-sync/wiki/2.-Configuration
+version: "2"
+options:
+  verbose: false
+syncs:
+  # IMPORTANT: ensure sync names are unique and do not match container
+  # names of other applications
+  app:
+    src: "./amz-sitescraper"

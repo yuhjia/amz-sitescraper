@@ -1,0 +1,27 @@
+version: "3.4"
+services:
+  chrome:
+    build: ./chrome
+    shm_size: '1gb'
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - '9222:9222'
+  app:
+    container_name: app
+    restart: always
+    build: ./amz-sitescraper
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+      - chrome
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
