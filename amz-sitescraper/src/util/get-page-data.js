@@ -49,14 +49,15 @@ const getPageData = async (asin) => {
 
         return {
             dimension: dim,
-            ranks: ranks
+            ranks: ranks,
+            title: title
         };
     });
 
     await browser.close();
     
     pageData.asin = asin;
-    
+
     return pageData;
 };
 

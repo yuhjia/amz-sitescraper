@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const _ = require('lodash');
 
 const router = express.Router();
 
@@ -15,9 +15,10 @@ router.get('/product', async function (req, res) {
     try {
         // retrieve data
         const items = await Product.find({}).exec();
+        const uniqueItems = _.uniqBy(items, 'asin');
 
         res.render('products', {
-            items: items,
+            items: uniqueItems,
             title: 'List of PRODUCTS'
         });
     } catch (err) {
@@ -41,11 +42,11 @@ router.get('/product/:id', async function (req, res) {
 
     try {
         // retrieve data
-        const item = await Product.findOne({ asin: asin }).exec();
+        const items = await Product.find({ asin: asin }).exec();
 
         res.render('product', {
-            item: item,
-            title: item.asin
+            items: items,
+            title: asin
         });
     } catch (err) {
         console.log(err);

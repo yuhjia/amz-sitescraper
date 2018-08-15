@@ -1,8 +1,14 @@
-<dl>
-    <dt>Dimensions</dt>
-    <dd>{{item.dimension}}</dd>
-    <dt>Rank</dt>
-        {{#each item.ranks}}
-            <dd>{{this.rank}} {{this.category}}</dd>
-        {{/each}}
-</dl>
+{{#each items}}
+    <dl>
+        <dt>Title (ASIN)</dt>
+        <dd>{{this.title}} ({{this.asin}})</dd>
+        <dt>Dimensions</dt>
+        <dd>{{this.dimension}}</dd>
+        <dt>Rank</dt>
+            {{#each this.ranks}}
+                <dd>{{this.rank}} {{this.category}}</dd>
+            {{/each}}
+        <dt>Timestamp</dt>
+        <dd>{{this.timestamp}}</dd>
+    </dl>
+{{/each}}
