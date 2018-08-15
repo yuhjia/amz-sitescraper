@@ -7,7 +7,8 @@ const productSchema = Schema({
     asin: {
       type: String,
       required: true,
-      length: 10
+      minlength: 10,
+      maxlength: 10
     },
     dimension: {
       type: String
